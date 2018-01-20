@@ -2,7 +2,44 @@ console.log("derp")
 
 
 var tileSize=64;
-var mapSize=20;
+var mapSize=30;
+
+
+function indexArray(a){
+  return a.map(function(el,i){
+    el.i=i
+    return el
+  })
+}
+
+var entities=indexArray([
+  { img:'house.png', size: 128, builds:0 },
+  { img:'mole.png', size: 64, speed: 0.01, canBurrow: true, digSpeed: 0.1 },
+])
+
+var tiles=indexArray([
+  { img:'empty.png'},
+  { img:'stone.png', collision:[1]},
+  { img:'stone_floor.png'},
+  { img:'iron.png'},
+  { img:'farm.png'},
+  { img:'farm2.png'},
+  { img:'house.png'},
+  { img:'storage.png'},
+  { img:'storage_stone.png'},
+  { img:'storage_iron.png'},
+  { img:'house.png'},
+  { img:'river.png'},
+  { img:'hole.png'},
+  { img:'stairs.png'},
+  { img:'mountain.png'}
+]);
+
+function getTileId(tileName){
+  return tiles.filter(function(tile){
+    return tile.img.indexOf(tileName)>-1
+  })[0].i
+}
 
 // clockwise edges of tile have this material? -> x,y on tilemap
 var tileMappings = {
@@ -23,49 +60,73 @@ var tileMappings = {
   '0,1,0,1':[[6,5]],
 }
 
+// shitty PRNG from stackoverflow that accepts a seed unlike fucking Math.random
+var seed = 1;
+function random() {
+    var derp = Math.sin(seed++) * 10000;
+    return derp - Math.floor(derp);
+}
 
 var map=createMap()
 
-for (var x=5;x<10;x++){
-  map[x][10]+=128
+function createMap(){
+  var map=[];
+  map.planned=[]
+
+  map.set=function (x,y,tileName,to){
+    if (to===undefined) {
+      to=true
+    }
+    if (to){
+      this[Math.floor(y)][Math.floor(x)] |= (1<<getTileId(tileName))
+    } else {
+      this[Math.floor(y)][Math.floor(x)] &= ~(1<<getTileId(tileName))
+    }
+  }
+  map.get=function(x,y,tileName){
+    return ( this[Math.floor(y)][Math.floor(x)] & (1<<getTileId(tileName)) ) > 0
+  }
+
+  for (var y=0; y<mapSize; y++) {
+    map[y]=[]
+    map.planned[y]=[]
+    for (var x=0; x<mapSize; x++) {
+      map[y][x]=1
+      map.planned[y][x]=0
+      var dx=x-mapSize*0.5
+      var dy=y-mapSize*0.5
+      var r=Math.sqrt(dx*dx+dy*dy)
+      console.log()
+      if ( random() > 0.2*Math.abs(r-10) ) {
+        console.log('random')
+        map.set(x,y,'stone')
+        //+(Math.random()>0.95?4:0)
+        //+(Math.random()>0.98?16:0)
+      }
+    }
+  }
+
+  map.plan=function(x,y,tileName,to){
+    if (to===undefined) {
+      to=true
+    }
+    console.log(x,y, tileName, to)
+    if (to){
+      this.planned[Math.floor(y)][Math.floor(x)] |= (1<<getTileId(tileName))
+    } else {
+      this.planned[Math.floor(y)][Math.floor(x)] &= ~(1<<getTileId(tileName))
+    }
+  }
+
+
+  map.set(mapSize*0.5,mapSize*0.5,'house')
+  map.plan(mapSize*0.5-5,mapSize*0.5-5,'house')
+
+  return map
 }
 
-function indexArray(a){
-  return a.map(function(el,i){
-    el.i=i
-    return el
-  })
-}
 
-var entities=indexArray([
-  { img:'house.png', size: 128, builds:0 },
-  { img:'mole.png', size: 64, speed: 0.01, canBurrow: true, digSpeed: 0.1 },
-])
-
-var tiles=indexArray([
-  { img:'empty.png'},
-  { img:'farm.png'},
-  { img:'farm2.png'},
-  { img:'building.png'},
-  { img:'river.png'},
-  { img:'hole.png'},
-  { img:'stairs.png'},
-  { img:'mountain.png'}
-]);
-
-function getTileId(tileName){
-  return tiles.filter(function(tile){
-    return tile.img.indexOf(tileName)>-1
-  })[0].i
-}
-function setMap(x,y,tileName){
-  map[Math.floor(y)][Math.floor(x)] |= (1<<getTileId(tileName))
-}
-function getMap(x,y,tileName){
-  return ( map[Math.floor(y)][Math.floor(x)] & (1<<getTileId(tileName)) ) > 0
-}
 var things=[
-  {id:0, x:mapSize*0.5, y:mapSize*0.5, vx:0, vy:0, selected: true},
   {id:1, x:mapSize*0.5, y:mapSize*0.5, vx:0, vy:0, selected: true, digProcess:0},
   {id:1, x:mapSize*0.5+1.0, y:mapSize*0.5, vx:0, vy:0, selected: true, digProcess:0},
   {id:1, x:mapSize*0.5+2.0, y:mapSize*0.5, vx:0, vy:0, selected: true,  digProcess:0}
@@ -87,26 +148,12 @@ function loadEntities(){
   })
 }
 
-function createMap(){
-  var map=[];
-  for (var y=0; y<mapSize; y++) {
-    map[y]=[]
-    for (var x=0; x<mapSize; x++) {
-      map[y][x]=1
-        //+(Math.random()>0.8?2:0)
-        +(Math.random()>0.95?4:0)
-        +(Math.random()>0.98?16:0)
-    }
-  }
-  return map
-}
 
-
-var oldOrigin
-var origin={x:0,y:0,scale:1}
 
 var canvas=document.querySelector('canvas')
 var ctx=canvas.getContext("2d")
+
+console.log(mapSize*0.5*tileSize-0.5)
 
 function resize(){
   var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
@@ -117,6 +164,15 @@ function resize(){
 
 resize()
 //draw()
+
+
+
+var oldOrigin
+var origin={
+  x:-mapSize*0.5*tileSize+0.5*canvas.width,
+  y:-mapSize*0.5*tileSize+0.5*canvas.height,
+  scale:1
+}
 
 window.addEventListener('resize', (ev) => {
   resize()
@@ -148,20 +204,13 @@ function vecDist(x1,y1,x2,y2){
 }
 
 // gets corners that belong to the corner on top left of a tile
-function getCorners(x,y, border){
+function getCorners(map2, x,y, border){
     return [
-        map[y][x],
-        x+1<mapSize ? map[y][x+1]:border,
-        x+1<mapSize && y+1<mapSize ? map[y+1][x+1]:border,
-        y+1<mapSize ? map[y+1][x]:border
+        map2[y][x],
+        x+1<mapSize ? map2[y][x+1]:border,
+        x+1<mapSize && y+1<mapSize ? map2[y+1][x+1]:border,
+        y+1<mapSize ? map2[y+1][x]:border
       ]
-}
-
-// shitty PRNG from stackoverflow that accepts a seed unlike fucking Math.random
-var seed = 1;
-function random() {
-    var x = Math.sin(seed++) * 10000;
-    return x - Math.floor(x);
 }
 
 
@@ -171,7 +220,7 @@ function drawMap(){
   for (var x=0; x<mapSize; x++) {
     for (var y=0; y<mapSize; y++) {
       tiles.forEach(function(tile, i) {
-        var corners=getCorners(x,y,1).map(function(corner){
+        var corners=getCorners(map, x,y,1).map(function(corner){
           return ( corner & (1<<i) ) >> i
         })
         var possibleMappings=tileMappings[corners.join()]
@@ -190,6 +239,31 @@ function drawMap(){
         )
       })
 
+      tiles.forEach(function(tile, i) {
+        var corners=getCorners(map.planned,x,y,0).map(function(corner){
+          return ( corner & (1<<i) ) >> i
+        })
+        var possibleMappings=tileMappings[corners.join()]
+        if (!possibleMappings) return
+        var mapping = possibleMappings[Math.floor(random()*possibleMappings.length)].map(function(e){
+          return e*tileSize
+        })
+        var args=[tile.imageObj]
+        .concat(mapping)
+        .concat([tileSize,tileSize])
+        .concat([tileSize*x, tileSize*y, tileSize, tileSize])
+        ctx.drawImage(tile.imageObj,
+          mapping[0], mapping[1], tileSize, tileSize,
+          x*tileSize+origin.x, y*tileSize+origin.y, tileSize, tileSize
+        )
+
+        var oldGlobal = ctx.globalCompositeOperation;
+        ctx.globalCompositeOperation = 'multiply';
+        // fill offscreen buffer with the tint color
+        ctx.fillStyle = '#0f0';
+        ctx.fillRect(x*tileSize+origin.x, y*tileSize+origin.y, tileSize, tileSize);
+        ctx.globalCompositeOperation=oldGlobal
+      })
     }
   }
 }
@@ -211,7 +285,6 @@ function drawThings(){
     ctx.globalAlpha = 1
 
     if (thing.selected) {
-      console.log('sele')
       ctx.beginPath();
       ctx.arc( x, y, entities[thing.id].size*0.5, 0, Math.PI*2, false);
       ctx.strokeStyle='#F0F'
@@ -266,7 +339,7 @@ window.onmousedown=function(evt){
             if (thing.burrowed) {
               return 1<<getTileId('hole')&tile?'_':'u'
             } else {
-              return 1<<getTileId('mountain')&tile?'u':'_'
+              return 1<<getTileId('stone')&tile?'u':'_'
             }
           })
         });
@@ -392,8 +465,8 @@ window.onkeydown=function(evt){
       })
     }
     burrowAbleThings.forEach(function(thing){
-      var worldSize=entities[thing.id].size/tileSize
-      setMap(thing.x+worldSize*0.5, thing.y+worldSize*0.5, 'stairs')
+      var mapSize=entities[thing.id].size/tileSize
+      map.set(thing.x+mapSize*0.5, thing.y+mapSize*0.5, 'stairs')
     })
   }
 }
@@ -414,19 +487,25 @@ function update(){
     }
   })
 
-  things.filter(function(thing){
-    return thing.burrowed
-  }).forEach(function(thing){
-    var worldSize=entities[thing.id].size/tileSize
-    if (!getMap(thing.x+worldSize*0.5, thing.y+worldSize*0.5, 'hole')) {
-      thing.vx*=thing.digProcess
-      thing.vy*=thing.digProcess
-      thing.digProcess+=entities[thing.id].digSpeed
-    }
-    if (thing.digProcess>1) {
-      setMap(thing.x+worldSize*0.5, thing.y+worldSize*0.5, 'hole')
-      thing.digProcess=0
-    }
+  things.forEach(function(thing){
+    map.set(thing.x+0.5, thing.y+0.5, 'stone', false)
+  })
+
+  things.forEach(function(thing){
+    tiles.forEach(function(tile){
+      if (map.get() tile.collision && tile.collision.indexOf(thing.id)>-1 ) {
+        thing.vx*=0//thing.digProcess
+        thing.vy*=0//thing.digProcess
+        //thing.digProcess+=entities[thing.id].digSpeed
+      }
+      if (thing.digProcess>1) {
+        //map.set(thing.x+0.5, thing.y+0.5, 'stone', false)
+        //map.set(thing.x+0.5, thing.y+0.5, 'stone_floor', true)
+        thing.digProcess=0
+      }
+
+    })
+
   })
 
   things.forEach(function(thing){
@@ -453,10 +532,32 @@ function update(){
 
 }
 
+function updateHouses(){
+  var houseCount=0
+  for (var x=0; x<mapSize; x++) {
+    for (var y=0; y<mapSize; y++) {
+      if (map.get(x,y,'house')) {
+        houseCount++
+      }
+    }
+  }
+  for (var x=0; x<mapSize; x++) {
+    for (var y=0; y<mapSize; y++) {
+      if (things.filter(function(thing){return thing.id==1}).length<=houseCount) {
+        things.push({id:1, x:x, y:y, vx:0, vy:0, selected: true,  digProcess:0})
+      }
+    }
+  }
+}
+
+setInterval(function(){
+  updateHouses()
+}, 1000.0)
+
 setInterval(function(){
   update()
-}, 1000.0/20)
+}, 1000.0/50)
 
 setInterval(function(){
   draw()
-}, 1000.0/20)
+}, 1000.0/50)
