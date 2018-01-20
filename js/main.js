@@ -14,12 +14,12 @@ function indexArray(a){
 
 var entities=indexArray([
   { img:'house.png', size: 128, builds:0 },
-  { img:'mole.png', size: 64, speed: 0.01, canBurrow: true, digSpeed: 0.1 },
+  { img:'mole.png', size: 32, speed: 0.01, canBurrow: true, digSpeed: 0.1, animations:[1,5,5,5] },
 ])
 
 var tiles=indexArray([
   { img:'empty.png'},
-  { img:'stone.png', collision:[1]},
+  { img:'stone.png', collision:[1], mining:[1], miningTo:'stone_floor'},
   { img:'stone_floor.png'},
   { img:'iron.png'},
   { img:'farm.png'},
@@ -127,9 +127,6 @@ function createMap(){
 
 
 var things=[
-  {id:1, x:mapSize*0.5, y:mapSize*0.5, vx:0, vy:0, selected: true, digProcess:0},
-  {id:1, x:mapSize*0.5+1.0, y:mapSize*0.5, vx:0, vy:0, selected: true, digProcess:0},
-  {id:1, x:mapSize*0.5+2.0, y:mapSize*0.5, vx:0, vy:0, selected: true,  digProcess:0}
 ]
 
 loadTiles()
@@ -272,17 +269,27 @@ function drawThings(){
   things.forEach(function(thing){
     var x=origin.x+thing.x*tileSize
     var y=origin.y+thing.y*tileSize
-    if (thing.burrowed) {
-      ctx.globalAlpha = 0.5
+
+    if (entities[thing.id].animations){
+      ctx.drawImage(
+        entities[thing.id].imageObj,
+        entities[thing.id].size*thing.frame,
+        entities[thing.id].size*thing.animation,
+        entities[thing.id].size,
+        entities[thing.id].size,
+        x-0.5*entities[thing.id].size,
+        y-0.5*entities[thing.id].size,
+        entities[thing.id].size,
+        entities[thing.id].size
+      )
     } else {
-      ctx.globalAlpha = 1
+      ctx.drawImage(
+        entities[thing.id].imageObj,
+        x-0.5*entities[thing.id].size,
+        y-0.5*entities[thing.id].size
+      )
     }
-    ctx.drawImage(
-      entities[thing.id].imageObj,
-      x-0.5*entities[thing.id].size,
-      y-0.5*entities[thing.id].size
-    )
-    ctx.globalAlpha = 1
+
 
     if (thing.selected) {
       ctx.beginPath();
@@ -331,38 +338,50 @@ window.onmousedown=function(evt){
   } else if (evt.button===2) {
     things.forEach(function(thing){
       if (thing.selected){
-        thing.moveTargets=[]
-        var targetWoldX=(evt.clientX-origin.x)/tileSize
-        var targetWoldY=(evt.clientY-origin.y)/tileSize
-        var obstacleMap=map.map(function(line){
-          return line.map(function(tile){
-            if (thing.burrowed) {
-              return 1<<getTileId('hole')&tile?'_':'u'
-            } else {
-              return 1<<getTileId('stone')&tile?'u':'_'
-            }
-          })
-        });
-        obstacleMap[Math.floor(thing.y)][Math.floor(thing.x)]='s'
-        obstacleMap[Math.floor(targetWoldY)][Math.floor(targetWoldX)]='g'
-        console.log(obstacleMap)
-        var path=astar(obstacleMap,'manhattan',true)
-        if (path) {
-          path=path.reverse();
-          path.pop()
-          console.log(path)
-          path.forEach(function(step){
-            //map[step.row][step.col]+=32
-            thing.moveTargets.push({x: step.col, y: step.row});
-          })
+        if ( tiles.filter(function(tile){
+          return tile.mining && tile.minig.indexOf(thing.id)>-1
+        }).length>0) {
+          mineCommand(thing,evt)
+        } else {
+          moveCommand(thing, evt)
         }
-        thing.moveTargets.unshift({x: targetWoldX, y: targetWoldY});
-
       }
     })
-    console.log(things)
   }
 
+}
+
+function mineCommand(thing,evt){
+
+}
+
+function moveCommand(thing,evt){
+  thing.moveTargets=[]
+  var targetWoldX=(evt.clientX-origin.x)/tileSize
+  var targetWoldY=(evt.clientY-origin.y)/tileSize
+  var obstacleMap=map.map(function(line){
+    return line.map(function(tile){
+      if (thing.burrowed) {
+        return 1<<getTileId('hole')&tile?'_':'u'
+      } else {
+        return 1<<getTileId('stone')&tile?'u':'_'
+      }
+    })
+  });
+  obstacleMap[Math.floor(thing.y)][Math.floor(thing.x)]='s'
+  obstacleMap[Math.floor(targetWoldY)][Math.floor(targetWoldX)]='g'
+  console.log(obstacleMap)
+  var path=astar(obstacleMap,'manhattan',true)
+  if (path) {
+    path=path.reverse();
+    path.pop()
+    console.log(path)
+    path.forEach(function(step){
+      //map[step.row][step.col]+=32
+      thing.moveTargets.push({x: step.col, y: step.row});
+    })
+  }
+  thing.moveTargets.unshift({x: targetWoldX, y: targetWoldY});
 }
 
 window.onmouseup=function(evt){
@@ -493,7 +512,7 @@ function update(){
 
   things.forEach(function(thing){
     tiles.forEach(function(tile){
-      if (map.get() tile.collision && tile.collision.indexOf(thing.id)>-1 ) {
+      if (tile.collision && tile.collision.indexOf(thing.id)>-1 ) {
         thing.vx*=0//thing.digProcess
         thing.vy*=0//thing.digProcess
         //thing.digProcess+=entities[thing.id].digSpeed
@@ -532,6 +551,17 @@ function update(){
 
 }
 
+function updateAnmiations(){
+  things.forEach(function(thing){
+    if (entities[thing.id].animations) {
+      thing.frame++
+      if (thing.frame>=entities[thing.id].animations[thing.animation]){
+        thing.frame=0
+      }
+    }
+  })
+}
+
 function updateHouses(){
   var houseCount=0
   for (var x=0; x<mapSize; x++) {
@@ -543,12 +573,18 @@ function updateHouses(){
   }
   for (var x=0; x<mapSize; x++) {
     for (var y=0; y<mapSize; y++) {
-      if (things.filter(function(thing){return thing.id==1}).length<=houseCount) {
-        things.push({id:1, x:x, y:y, vx:0, vy:0, selected: true,  digProcess:0})
+      if (map.get(x,y,'house')&& things.filter(function(thing){return thing.id==1}).length<houseCount) {
+        things.push({id:1, x:x, y:y, vx:0, vy:0, selected: true,  digProcess:0, animation:0, frame:0})
       }
     }
   }
 }
+
+
+setInterval(function(){
+  updateAnmiations()
+}, 1000.0/5)
+
 
 setInterval(function(){
   updateHouses()
