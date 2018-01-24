@@ -9,7 +9,6 @@ var numberKeysTimeStamp=[]
 
 
 window.onmousedown=function(evt){
-  console.log(evt)
   if (evt.button===0) {
     LMBdragging=evt;
   } else if (evt.button===1) {
@@ -18,7 +17,7 @@ window.onmousedown=function(evt){
     things.forEach(function(thing){
       if (thing.selected){
         if ( tiles.filter(function(tile){
-          return tile.mining && tile.minig.indexOf(thing.id)>-1
+          return tile.mining!==undefined && tile.mining.indexOf(thing.id)>-1
         }).length>0) {
           mineCommand(thing,evt)
         } else {
@@ -46,6 +45,7 @@ window.onmouseup=function(evt){
           ( LMBdragging.clientY-origin.y > thing.y*tileSize && evt.clientY-origin.y < thing.y*tileSize ) )
     }).forEach(function(thing){
       thing.selected=true
+      console.log(thing)
     });
 
     //click select

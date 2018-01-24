@@ -121,11 +121,14 @@ function drawBox(box){
 
 
 function updateAnmiations(){
-  things.forEach(function(thing){
+  things.forEach(function(thing) {
     if (entities[thing.id].animations) {
       thing.frame++
       if (thing.frame>=entities[thing.id].animations[thing.animation]){
         thing.frame=0
+        if (entities[thing.id].onAnimationEnd[thing.animation]) {
+          entities[thing.id].onAnimationEnd[thing.animation].apply(thing)
+        }
       }
     }
   })

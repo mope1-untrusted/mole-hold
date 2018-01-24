@@ -9,7 +9,9 @@ function update(){
       var l=Math.sqrt(dx*dx+dy*dy)
       if (l<0.5) {
         thing.moveTargets.pop()
-        return
+        if (thing.moveTargets.length==0 && entities[thing.id].onMoveTargetReached){
+          entities[thing.id].onMoveTargetReached.apply(thing)
+        }
       }
       thing.vx+=dx*1.0/l*entities[thing.id].speed;
       thing.vy+=dy*1.0/l*entities[thing.id].speed;
@@ -61,7 +63,6 @@ function update(){
 
 }
 
-
 function updateHouses(){
   var houseCount=0
   for (var x=0; x<mapSize; x++) {
@@ -80,38 +81,51 @@ function updateHouses(){
   }
 }
 
-
+function updateSlimes(){
+  things.filter(function(thing){
+    return thing.id===2
+  }).forEach(function(thing){
+    if (Math.random()>0.9) {
+      thing.animation=15
+    }
+  })
+}
 
 function mineCommand(thing,evt){
 
 }
 
-
 function moveCommand(thing,evt){
+  if (entities[thing.id].onMoveCommand) {
+    entities[thing.id].onMoveCommand.apply(thing)
+  }
+
   thing.moveTargets=[]
   var targetWoldX=(evt.clientX-origin.x)/tileSize
   var targetWoldY=(evt.clientY-origin.y)/tileSize
-  var obstacleMap=map.map(function(line){
-    return line.map(function(tile){
-      if (thing.burrowed) {
-        return 1<<getTileId('hole')&tile?'_':'u'
-      } else {
-        return 1<<getTileId('stone')&tile?'u':'_'
+  var obstacleMap=map.mapTiles(function(x,y){
+    var avoid=false
+    entities[thing.id].tileAvoid.forEach(function(tile){
+      if (map.get(x,y,tile)) {
+        console.log(tile)
+        avoid=true
       }
     })
+    return avoid?'u':'_' //unpassable=u in this astar library
   });
   obstacleMap[Math.floor(thing.y)][Math.floor(thing.x)]='s'
   obstacleMap[Math.floor(targetWoldY)][Math.floor(targetWoldX)]='g'
-  console.log(obstacleMap)
+
   var path=astar(obstacleMap,'manhattan',true)
   if (path) {
     path=path.reverse();
     path.pop()
-    console.log(path)
     path.forEach(function(step){
-      //map[step.row][step.col]+=32
       thing.moveTargets.push({x: step.col, y: step.row});
     })
+  } else {
+    console.log('no path, going yolo mode')
   }
   thing.moveTargets.unshift({x: targetWoldX, y: targetWoldY});
+  console.log('movecommand path', path)
 }

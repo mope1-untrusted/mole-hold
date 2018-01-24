@@ -5,12 +5,34 @@ var mapSize=30;
 
 var entities=indexArray([
   { img:'house.png', size: 128, builds:0 },
-  { img:'mole.png', size: 32, speed: 0.01, canBurrow: true, digSpeed: 0.1, animations:[1,5,5,5] },
+  {
+    img:'mole.png',
+    size: 32,
+    speed: 0.01,
+    canBurrow: true,
+    digSpeed: 0.1,
+    animations:[1,5,5,5],
+    tileAvoid: ['stone'],
+    tileCollision: ['stone'],
+
+  },
+  {
+    img:'slime.png',
+    size: 64,
+    speed: 0.01,
+    animations:[13,6,6,16],
+    tileAvoid: ['stone'],
+    tileCollision: ['stone'],
+  },
 ])
+entities.forEach(function(entity){
+  if (!entity.onAnimationEnd) entity.onAnimationEnd=[]
+  if (!entity.tileAvoid) entity.tileAvoid=[]
+})
 
 var tiles=indexArray([
   { img:'empty.png'},
-  { img:'stone.png', collision:[1], mining:[1], miningTo:'stone_floor'},
+  { img:'stone.png', miningTo:'stone_floor'},
   { img:'stone_floor.png'},
   { img:'iron.png'},
   { img:'farm.png'},
@@ -45,5 +67,59 @@ var tileMappings = {
   '0,1,0,1':[[6,5]],
 }
 
-
 var things=[]
+
+var Thing=function(params){
+  console.log(this,params)
+  this.id=params.id||0
+  this.x=params.x||1
+  this.vx=params.vx||0
+  this.y=params.y||1
+  this.vy=params.vy||0
+  this.animation=params.animation||0
+  this.frame=0
+  things.push(this)
+}
+
+new Thing({id:2, animation:0})
+
+//some specific shit for slime
+entities[2].animations[15]=16
+entities[2].onAnimationEnd[1]=function(){
+  this.animation=2
+}
+entities[2].onAnimationEnd[15]=function(){
+  this.animation=0
+  var newSlime=new Thing(this)
+  newSlime.x+=Math.random()
+  newSlime.y+=Math.random()
+}
+entities[2].onMoveCommand=function(){
+  this.animation=1
+  this.frame=0
+}
+entities[2].onMoveTargetReached=function(){
+  this.animation=0
+  this.frame=0
+}
+
+
+//git outta mah room im playin moincroft
+function generateTerrain(map){
+  for (var y=0; y<mapSize; y++) {
+    for (var x=0; x<mapSize; x++) {
+
+      var dx=x-mapSize*0.5
+      var dy=y-mapSize*0.5
+      var r=Math.sqrt(dx*dx+dy*dy)
+      if ( random() > 0.2*Math.abs(r-10) ) {
+        if ( random() > 0.8 ) {
+          map.set(x,y,'iron')
+          map.set(x,y,'stone')
+        } else {
+          map.set(x,y,'stone')
+        }
+      }
+    }
+  }
+}

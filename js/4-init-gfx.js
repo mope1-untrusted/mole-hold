@@ -21,5 +21,23 @@ function moveOrigin(evt){
 }
 
 window.addEventListener('resize', (ev) => {
-  resize()
+  resize(canvas)
 });
+
+
+
+loadTiles()
+loadEntities()
+
+function loadTiles(){
+  tiles.forEach(function(tile){
+    tile.imageObj= new Image();
+    tile.imageObj.src='tiles/'+tile.img;
+  })
+}
+function loadEntities(){
+  entities.forEach(function(entity){
+    entity.imageObj= new Image();
+    entity.imageObj.src='entities/'+entity.img;
+  })
+}

@@ -2,11 +2,11 @@
 
 setInterval(function(){
   updateAnmiations()
-}, 1000.0/5)
-
+}, 1000.0/10)
 
 setInterval(function(){
-  updateHouses()
+  updateSlimes()
+  //updateHouses()
 }, 1000.0)
 
 setInterval(function(){

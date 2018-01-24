@@ -7,9 +7,14 @@ function indexArray(a){
 }
 
 function getTileId(tileName){
-  return tiles.filter(function(tile){
+  var tile=tiles.filter(function(tile){
     return tile.img.indexOf(tileName)>-1
-  })[0].i
+  })[0]
+  if (!tile) {
+    throw 'getTileId('+tileName+'), not found'
+  } else {
+    return tile.i
+  }
 }
 
 
