@@ -1,0 +1,23 @@
+{
+  "name": "mole-hold",
+  "version": "1.0.0",
+  "description": "dont look at the code its ugly ;-) will update readme when its better",
+  "main": "run.sh",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mope1-untrusted/mole-hold.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mope1-untrusted/mole-hold/issues"
+  },
+  "homepage": "https://github.com/mope1-untrusted/mole-hold#readme"
+}
