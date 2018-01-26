@@ -1,0 +1,331 @@
+Never tell your password to anyone.
+Samstag Jan 20
+Schlaefer: ned wuerklich es macht voll ke sinn mit dene tunnel mechanike
+Schlaefer: wil ich muest s A* path finding wonich vo irgendwem anderem klaut han so verwende dass si d tunnel igang finded
+Schlaefer: und das kotzt mi aah
+Schlaefer: und mit de grafike korrekt mache isch au muesam
+Schlaefer: ich denk mer macheds gschiider so uhm
+Schlaefer: dungeon keeper style halt
+Schlaefer: dwarf keeper style
+Schlaefer: wobi das isch missleading wenn ich das so sege wil dungeon keeper het fuer d wand und d traps es grid layout
+Schlaefer: und nur fuer d ruum irichtige off-grid wie ichs jetzt baut han
+Schlaefer: wie gahts :)
+Gargaduk: gut gut
+Gargaduk: gester bini scho weg gsi :) zzZZ
+Gargaduk: also hesch gmeint so grid based diggy system?
+Schlaefer: ah nenei
+Schlaefer: ich mach die tunnel weg und mach dasmer d berge kan wegpickle
+Gargaduk: und wo sind d berga?
+Gargaduk: einzelni objekt?
+Schlaefer: ah ich han denkt
+Schlaefer: wie euses urpsruengliche konzept
+Schlaefer: also imene ring um d mitti ume
+Schlaefer: und denn usse gegner oder so
+Gargaduk: ok
+Gargaduk: und gäng graba?
+Schlaefer: jep exactly
+Schlaefer: so trap labyrinth falle stuff
+Schlaefer: traps kammer ja denn uhm
+Schlaefer: als object anefitze
+Gargaduk: yes
+Schlaefer: dass die ned alli es eigenigs tilemap bruched
+Schlaefer: und denn eifach d kollision abschalte zwueschet traps und gegner
+Schlaefer: eh
+Schlaefer: traps und viecher
+Gargaduk: yes
+Schlaefer: sowohl gegner als au player dings
+Schlaefer: jepjep
+Schlaefer: nice nice
+Gargaduk: und denn spawnt dr ander bös mensch viechers
+Schlaefer: ich mues no biz schaffe aber ich mach huet abig mal changes und schicks der
+Schlaefer: jep
+Gargaduk: ok cool :)
+Gargaduk: und sus isch au ok
+Gargaduk: mol warta was s thema isch und so :p
+Schlaefer: scheiss ufs thema
+Schlaefer: digi digi hole
+Schlaefer: ORKS MUST DIE
+Schlaefer: ♫  https://steamcommunity-a.akamaihd.net/economy/emoticon/clunk  ♫  https://steamcommunity-a.akamaihd.net/economy/emoticon/clunk  ♫  https://steamcommunity-a.akamaihd.net/economy/emoticon/clunk  ♫  https://steamcommunity-a.akamaihd.net/economy/emoticon/clunk  ♫  https://steamcommunity-a.akamaihd.net/economy/emoticon/clunk
+Gargaduk: XDD
+Gargaduk: genau sus machemer eifach es liad usem theme und lönds im loop laufa
+Gargaduk: xD
+Gargaduk: völlig unrelated
+Schlaefer: "mer"
+Schlaefer: du!
+Schlaefer: ich koent hoechstens
+Schlaefer: en  snippet neh und uf
+Schlaefer: "walk" mappe
+Gargaduk: du nimmsch d voice uf
+Schlaefer: dasses eifach
+Schlaefer: derp derp derp derp derp derp
+Schlaefer: macht wemmer lauft odert so
+Gargaduk: yes
+Gargaduk: und ganz vil vo dena kill sounds wia im dungeon keeper. isch wichtig
+Gargaduk: ♫
+Gargaduk:  https://steamcommunity-a.akamaihd.net/economy/emoticon/dd2orc  https://steamcommunity-a.akamaihd.net/economy/emoticon/displash
+Gargaduk: und schöni wuselsounds wenns laufend und grabend
+Schlaefer: oki das waer no geil
+Gargaduk:  https://steamcommunity-a.akamaihd.net/economy/emoticon/hardhat
+Schlaefer: boooorn underground
+Schlaefer: ♫♫♫♫
+Gargaduk: si könnd hardhats ufsammla? :D  https://steamcommunity-a.akamaihd.net/economy/emoticon/hardhat
+Schlaefer: ?
+Gargaduk: villicht so es fabrikgebäude wo usrüstig herstellt und si wuslend automatisch und holends... wobi es jo kei wuselgame isch.
+Schlaefer: huh warum au ned
+Schlaefer: dings
+Gargaduk: ma schickt si eifach hi oder so
+Schlaefer: aoe bimbel mechanik
+Schlaefer: kensch die
+Gargaduk: bimbel?
+Schlaefer: jep
+Schlaefer: alarm dings glocke button ufem town center
+Gargaduk: mhm
+Gargaduk: to arms!!
+Schlaefer: jep
+Gargaduk:  https://steamcommunity-a.akamaihd.net/economy/emoticon/dd2orc  https://steamcommunity-a.akamaihd.net/economy/emoticon/lltqsword
+Schlaefer: das gaht voll ab
+Schlaefer: ich find das isch e gueti loesig
+Schlaefer: evtl
+Gargaduk: mhm
+Schlaefer: also wemmer zwerge mached oder sowas
+Schlaefer: wenns viecher sind ehner weniger
+Gargaduk: was au cool wär isch das jeda in dem besser wird was er vil macht. also entweder graba, kämpfa
+Schlaefer: http://i.huffpost.com/gen/1193894/images/o-GUINEA-PIG-ARMOR-facebook.jpg
+Schlaefer: jep
+Schlaefer: voll
+Gargaduk: und denn au anderst usgseht mit dr zit :D
+Schlaefer: jep
+Schlaefer: sehr gueti idee
+Gargaduk: lol guinea pig
+Gargaduk: fancy
+Schlaefer: xD
+Gargaduk: i han au denkt so schöf, was blöd tönt aber mitem richtiga stil wärs cool  https://steamcommunity-a.akamaihd.net/economy/emoticon/lowpolysheep  i müast mol a skizza macha
+Schlaefer: schof sind jetzt ned unbedingt guet im buddle xD
+Schlaefer: aber es waer funny jep
+Schlaefer: so wc3 derp schaf xDDDD
+Schlaefer: BLEHH
+Schlaefer: BAAAH
+Gargaduk: aber si hend spitzhacka. also es sind humanoidi schöf :D
+Schlaefer: REEEEEEEEEEEEEE!!!!!!!!
+Schlaefer: aha
+Schlaefer: ja den
+Schlaefer: denn isch sowieso egal jep
+Gargaduk: yes
+Schlaefer: kansch gern skizze mache
+Gargaduk: und schof sind so "opfer" tiar wo denn vo werwölf killt werdend
+Schlaefer: am beste gischsi mir denn fetz ich si direkt ine
+Schlaefer: uhm
+Schlaefer: warum au ned jep
+Gargaduk: ka villicht so äba en bösa dracula wo alli möglicha monsters beschwört
+Schlaefer: sure
+Schlaefer: die genau moeglichkeit wiemer s monster summone kontrolliert koemer denn luege
+Schlaefer: das voll eifach
+Schlaefer: dasch
+Gargaduk: mhm
+Gargaduk: dass es gnuag spass macht mus dr zweit spieler au gnuag möglichkeita ha
+Schlaefer: sure
+Schlaefer: irgendwas mit akkord
+Schlaefer: dass der einti ton uhm
+Schlaefer: spawne isch und die andere
+Schlaefer: lauf richtige
+Gargaduk: jep
+Schlaefer: irgendiwe arrow keys uf benachbarti taste mappe
+Gargaduk: spawna, laufa, und rageeee
+Schlaefer: kansch der schomal was usdenke
+Schlaefer: am beste so dasses irgendwie au no halbwegs schlau toent oder so xD
+Schlaefer: wuerd no sinn mache
+Schlaefer: aber ka
+Gargaduk: yess
+Schlaefer: evtl isch rage sowas wie stimpack im sc2
+Schlaefer: dass si hp verluered
+Gargaduk: mhm
+Schlaefer: isch ebe no fun findi xD
+Gargaduk: und si werden es bitz grösser, me attack speed und schada. oder sogar rüstig
+Schlaefer: joa voll
+Schlaefer: alles
+Gargaduk: denn muas dr ander voll flüchta
+Schlaefer: mer koend ne ja inherenti HP regen geh
+Schlaefer: jep das ischs konzept
+Gargaduk: kama gräba au wider fülla?
+Schlaefer: uhm genau das isch d frag
+Gargaduk: und si reggend wenn si zügs fressend
+Schlaefer: ich wuerd sege jah aber gaht lang und isch tuer oder so
+Schlaefer: ah jah gueti idee
+Schlaefer: du meinsch spiler dudes
+Schlaefer: xD
+Schlaefer: fressed
+Gargaduk: yes
+Gargaduk: nom nom
+Schlaefer: ok also let me see
+Schlaefer: ich bau mal e worker AI wo uhm
+Gargaduk: oder es git en command irgendiwa alli tasta glichzitig denn fressend si sich selber, lol
+Schlaefer: buddlet und denn der stuff zemelist oder so
+Schlaefer: denn koent mer uhm
+Schlaefer: d stei bruche zum muure baue
+Gargaduk: yep
+Schlaefer: ja voll
+Gargaduk: villicht hets so edelstei oder erz no drin?
+Gargaduk: wo shiny blinkt
+Schlaefer: wemmer en total schiefe akkord spilt denn fresseds sich gegesichtig und werded wider starch
+Schlaefer: xD
+Gargaduk: denn gits no strategischi pünkt
+Schlaefer: ja erz toent guet
+Schlaefer: also mer hend stei und erz oder so
+Gargaduk: und sus isch eifach stei und erda wo au es bitz git
+Schlaefer: eis fuer defense und eis fuer weapon upgrade oder irgendwie so
+Schlaefer: meh als 2 woti ned
+Schlaefer: isch kacke
+Gargaduk: z.B.
+Schlaefer: aoe
+Gargaduk: oder eins zum baua und eins für upgrades vo einheita
+Schlaefer: ja genau das meini
+Schlaefer: du hesches beser gseit
+Gargaduk: villicht sogar alles isch nu 1. aber isch jo no recht egal
+Schlaefer: nei alles nur 1 isch muesam zum balance teilweiis
+Schlaefer: du wotsch es biz entkopplet
+Gargaduk: so wia im... shiprekt
+Schlaefer: dass kansch so fine tune wie wotsch
+Gargaduk: jo ok
+Schlaefer: i have no memory of this xD
+Schlaefer: shiprekt LUL das ischs beste gsi ahahaha
+Schlaefer: fuck yeh
+Gargaduk: döt gits doch so X uf dr map wo denn ressourca git und du bausch alles mit dem
+Schlaefer: soetemer wider malzocke
+Gargaduk: yes
+Schlaefer: jah voll
+Schlaefer: aber uhm
+Schlaefer: en spiler wo kann exponentiell meh arbeiter usbilde uhm
+Schlaefer: de uhm
+Schlaefer: de mues irgendwie ebiz in schach ghalte werde
+Gargaduk: meh arbeiter = meh frass für d monster :D
+Gargaduk: aber mer gsehds jo denn
+Schlaefer: fair enough
+Schlaefer: uhm
+Gargaduk: es könnt mega cool werda
+Schlaefer: jep
+Schlaefer: ich denk grad, du kriegsch gratis meh worker als spiler
+Schlaefer: aber
+Schlaefer: nur wenn du hueser hesch
+Schlaefer: wo stei kosted
+Schlaefer: irgendwie so
+Schlaefer: denn muesch ned de worker usbilde button  spamme UND hueeser baue wie in sc2
+Schlaefer: dasch nemli chli unnoetig
+Gargaduk: z.b. anhand vo da einheita vo dr bös spawnt. eini goht zum bispiel schnuarstracks uf d core arbeiter zum d industrie zerstöra, isch aber eher schwach. und eina isch meh für kampf geg armee :D
+Schlaefer: mer koent mit de hueser direkt wall baue!
+Gargaduk: orc bau? :D
+Schlaefer: ja gueti idee
+Schlaefer: jah halt generell
+Schlaefer: es isch es DING wo denn im weg isch
+Schlaefer: anstat muure
+Gargaduk: mhm
+Schlaefer: wo evtl meh kosted oder so xD
+Schlaefer: oder evtl isch au bedes s gliiche
+Gargaduk: und wo sehr stabil isch usser geg belagerigseinheita? :D
+Schlaefer: jep
+Schlaefer: ja das mit de spezialisierte gegner isch super
+Schlaefer: das machemer direkt so
+Gargaduk: denn gäbts schere stai papier vo: kampfeinheita, arbeitertöti einheita und anti gebäude einheita
+Schlaefer: jep
+Schlaefer: im aoe gits eso siege rams
+Gargaduk: und d arbeiter wärend denn stark geg belagerigseinheita wils könnd... technik usanandneh ;D
+Schlaefer: also irgend sowas bruchemer definitiv
+Schlaefer: jep
+Schlaefer: sehr guet
+Schlaefer: si hend so spitz hackene
+Gargaduk: oder es sind halt so troll irgendwia
+Gargaduk: also d belagerigsdingerns
+Schlaefer: evtl waers sonen stei golem wo schwach isch gege spitz hacke
+Gargaduk: a riesigi spitzhacka uf räder. lol
+Schlaefer: denn vs arbeiter irgend so en art hund oder so wo voll die glass cannon isch und langsam
+Schlaefer: aber vil dps
+Schlaefer: oder ka
+Gargaduk: jep so n windhund
+Gargaduk: en bösa
+Schlaefer: irgendwie oeppis wo gege armor uhm
+Schlaefer: ned guet isch
+Schlaefer: genau und jetzt no die boese gege d kampf worker
+Schlaefer: irgendwas halt
+Schlaefer: wo awesome usgseht xD
+Gargaduk: jep halt es monster
+Schlaefer: wo groesser isch als die vom spiler
+Gargaduk: jep
+Schlaefer: serh guet
+Schlaefer: okey also was heisst das fuer d AI
+Gargaduk: sehr guey!
+Schlaefer: xD
+Schlaefer: also es git worker wo buddled
+Schlaefer: es git bewaffneti
+Gargaduk: mhm
+Gargaduk: und ma muas a guati balance finda
+Schlaefer: wo umestoend und warted und irgendwie uf gegner in der noechi losgoend
+Schlaefer: jep
+Gargaduk: und s ganza natürlich rümlich guat managa
+Schlaefer: jep
+Schlaefer: und denn gits no....
+Schlaefer: ah buildings
+Schlaefer: genau da koemer denn no luege
+Gargaduk: buildings und falla könnti glichi kategorie si
+Schlaefer: ob mer die mues bemanne oder was au immer
+Schlaefer: uhm... ja
+Schlaefer: aber huus isch irgendwie fuer meh worker und traps isch dass ned stirbsch oder so
+Gargaduk: eifach es ding woma platziart und vo belagerigseinheita plättet wird
+Gargaduk: jep und s trap könnti au en tower oder irgendwas si
+Schlaefer: jep
+Gargaduk: villicht diant s huus au zum döt dr rohstoff hibringa anstatt immer hei.
+Schlaefer: ja
+Schlaefer: irgend es lager mechanik bruchts uf jede fall
+Schlaefer: ich waer evtl fuer dings
+Schlaefer: dwarf fortresss style
+Schlaefer: du deklariersch en ort als lager platz
+Schlaefer: und denn schmeisseds ire crap det ane
+Gargaduk: aha
+Schlaefer: so stei huufe
+Gargaduk: und wird denn vom bösa au plünderet?
+Schlaefer: denn gsehsch grad schoen wie voll dasses isch
+Schlaefer: evtl?
+Schlaefer: macht ned wuerki sinn aber evtl... dass si stei schmeissed oder so
+Gargaduk: oder jedes hus isch direkt au es silo woma irgendwia so duragseht wia vil zügs drin isch
+Schlaefer: ja das gieng uf jede fall au
+Schlaefer: waer biz eifach evtl
+Gargaduk: denn wärs no simpler, genau
+Gargaduk: und d monster tötend denn s silo und d rohstoff sind futsch
+Schlaefer: ja das gieng problemlos
+Schlaefer: aber denn bruchemer dedizierti muure
+Schlaefer: das waer aber au no gschid denki
+Schlaefer: mer koent mache dassmer muure kan be-manne
+Schlaefer: oder so
+Schlaefer: ah genau das isch no:
+Gargaduk: aha jo. eventuell
+Schlaefer: oder tuere
+Schlaefer: das wuerd meh sinn mache denki
+Schlaefer: wommer eifahc kann ufmache und zuemache
+Gargaduk: oder ma kann stei abträga aber au wieder himacha?
+Gargaduk: zum d wäg verschlüssa
+Schlaefer: ja uf das laufts use
+Schlaefer: aber ich denk es waer cooler zum gseh wo dasses wider anegmacht isch
+Schlaefer: indems so muure git
+Schlaefer: und ich denk es waer au cool wenns tuere git
+Gargaduk: denn wirds voll witzig wenner rage aktiviart und ma versuacht panisch alles z verschlüssa
+Schlaefer: wo halt lower HP hend
+Schlaefer: genau
+Schlaefer: und denn kunt en teil ine oder so
+Schlaefer: der agrifendi player mues sini units ja ned micro manage
+Gargaduk: mhm
+Schlaefer: aber er soeti ebiz siege debiha dass denn waerend de spiler defendet
+Gargaduk: villicht hends sogar kei kollision, wär weiss
+Schlaefer: dass sini siege denn kann d muur irisse dass sini restliche untis au inedoerfed\
+Schlaefer: hmm
+Gargaduk: mhm
+Schlaefer: also es wird sowieso so sii dass
+Schlaefer: d balance voll kaputt isch immer denki
+Gargaduk: :D
+Schlaefer: wil wenn du besser wirsch als spiler
+Schlaefer: und der ander nur sis midi keyboard het
+Schlaefer: denn isches voll kaputt
+Gargaduk: denn machemer halt es bitz gummiband
+Schlaefer: ja irgendwie so
+Schlaefer: jedefalls wenn du mit de muus voll abgahsch kansch extrem vil usehole just saying xD
+Schlaefer: siehe tower offense
+Schlaefer: keyboard vs mouse LOLLLL
+Schlaefer: rip robin
+Gargaduk: :D
