@@ -24,6 +24,11 @@ var entities=indexArray([
     tileAvoid: ['stone'],
     tileCollision: ['stone'],
   },
+  {
+    img:'evil.png',
+    size: 64,
+    customMovement: true,
+  },
 ])
 entities.forEach(function(entity){
   if (!entity.onAnimationEnd) entity.onAnimationEnd=[]
@@ -70,18 +75,23 @@ var tileMappings = {
 var things=[]
 
 var Thing=function(params){
-  console.log(this,params)
-  this.id=params.id||0
+  if (params.id) {
+    this.id=params.id
+  } else {
+   throw 'supply id when spawning Thing'
+  }
   this.x=params.x||1
   this.vx=params.vx||0
   this.y=params.y||1
   this.vy=params.vy||0
   this.animation=params.animation||0
   this.frame=0
+  this.customMovement=params.customMovement||entities[this.id].customMovement||false
+  console.log('new thing',this)
   things.push(this)
 }
 
-new Thing({id:2, animation:0})
+new Thing({id:3, x:5, y:5})
 
 //some specific shit for slime
 entities[2].animations[15]=16
@@ -112,8 +122,8 @@ function generateTerrain(map){
       var dx=x-mapSize*0.5
       var dy=y-mapSize*0.5
       var r=Math.sqrt(dx*dx+dy*dy)
-      if ( random() > 0.2*Math.abs(r-10) ) {
-        if ( random() > 0.8 ) {
+      if ( random() > 0.2*(r-10) ) {
+        if ( random() > 0.99 ) {
           map.set(x,y,'iron')
           map.set(x,y,'stone')
         } else {

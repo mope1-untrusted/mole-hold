@@ -6,7 +6,7 @@ setInterval(function(){
 
 setInterval(function(){
   updateSlimes()
-  //updateHouses()
+  updateHouses()
 }, 1000.0)
 
 setInterval(function(){

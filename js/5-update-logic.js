@@ -2,6 +2,10 @@
 
 function update(){
   things.forEach(function(thing){
+    if (thing.customMovement) {
+      return
+    }
+
     if (entities[thing.id].speed && thing.moveTargets && thing.moveTargets.length>0 ){
       var moveTarget=thing.moveTargets[thing.moveTargets.length-1]
       var dx = moveTarget.x-thing.x
@@ -20,6 +24,11 @@ function update(){
 
   things.forEach(function(thing){
     map.set(thing.x+0.5, thing.y+0.5, 'stone', false)
+    if (map.get(thing.x+0.5, thing.y+0.5, 'iron')) {
+      thing.animation=15
+      map.set(thing.x+0.5, thing.y+0.5, 'iron', false)
+    }
+
   })
 
   things.forEach(function(thing){
@@ -61,6 +70,22 @@ function update(){
     thing.y+=thing.vy
   })
 
+  updateEvil()
+}
+
+function updateEvil(){
+  evilAngle+=evilSpeed
+  evilSpeed*=0.9
+  things.filter(function(thing){
+    return thing.id===3
+  }).forEach(function(thing){
+    var x=mapSize*0.5+0.4*mapSize*Math.sin(evilAngle)
+    var y=mapSize*0.5+0.4*mapSize*Math.cos(evilAngle)
+
+    thing.x=x
+    thing.y=y
+
+  })
 }
 
 function updateHouses(){
@@ -74,8 +99,8 @@ function updateHouses(){
   }
   for (var x=0; x<mapSize; x++) {
     for (var y=0; y<mapSize; y++) {
-      if (map.get(x,y,'house')&& things.filter(function(thing){return thing.id==1}).length<houseCount) {
-        things.push({id:1, x:x, y:y, vx:0, vy:0, selected: true,  digProcess:0, animation:0, frame:0})
+      if (map.get(x,y,'house')&& things.filter(function(thing){return thing.id==2}).length<houseCount) {
+        new Thing({id:2, x:x, y:y})
       }
     }
   }
@@ -86,7 +111,7 @@ function updateSlimes(){
     return thing.id===2
   }).forEach(function(thing){
     if (Math.random()>0.9) {
-      thing.animation=15
+      //thing.animation=15
     }
   })
 }
@@ -96,6 +121,10 @@ function mineCommand(thing,evt){
 }
 
 function moveCommand(thing,evt){
+
+  // lol exception for slimes during clone HACK
+  if (thing.id==2 && thing.animation==15) return
+
   if (entities[thing.id].onMoveCommand) {
     entities[thing.id].onMoveCommand.apply(thing)
   }
@@ -107,7 +136,6 @@ function moveCommand(thing,evt){
     var avoid=false
     entities[thing.id].tileAvoid.forEach(function(tile){
       if (map.get(x,y,tile)) {
-        console.log(tile)
         avoid=true
       }
     })

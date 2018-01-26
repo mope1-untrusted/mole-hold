@@ -1,5 +1,3 @@
-#!/bin/bash
-cat << EOF > game.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,13 +25,16 @@ cat << EOF > game.html
 </head>
 <body>
   <canvas  oncontextmenu="return false;"></canvas>
-EOF
-
-for file in $(ls js); do
-  echo "<script src='js/$file'></script>" >> game.html
-done
-
-cat << EOF >> game.html
+<script src='js/1-utils.js'></script>
+<script src='js/2-definitions.js'></script>
+<script src='js/3-init-logic.js'></script>
+<script src='js/4-init-gfx.js'></script>
+<script src='js/5-update-logic.js'></script>
+<script src='js/6-update-gfx.js'></script>
+<script src='js/7-input.js'></script>
+<script src='js/8-midi-input.js'></script>
+<script src='js/9-loops.js'></script>
+<script src='js/astar.js'></script>
+<script src='js/midi.js'></script>
 </body>
 </html>
-EOF
