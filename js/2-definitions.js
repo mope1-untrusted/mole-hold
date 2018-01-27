@@ -9,9 +9,10 @@ var entities=indexArray([
     img:'mole.png',
     size: 64,
     speed: 0.01,
-    digSpeed: 0.1,
+    digSpeed: 0.01,
     tileCollision: ['stone'],
-    pathTrail: true
+    pathTrail: true,
+    animations: [1,1,1,1,1,1,1,1,1]
   },
   {
     img:'slime.png',
@@ -20,6 +21,7 @@ var entities=indexArray([
     animations:[13,6,6,16],
     tileAvoid: ['stone'],
     tileCollision: ['stone'],
+    selectAble: true
   },
   {
     img:'evil.png',
@@ -88,6 +90,7 @@ var Thing=function(params){
   this.customMovement=params.customMovement||entities[this.id].customMovement||false
   this.pathTrail=params.pathTrail||entities[this.id].pathTrail||false
   this.angle=params.angle||entities[this.id].angle||false
+  this.selectAble=params.selectAble||entities[this.id].selectAble||false
   console.log('new thing',this)
   things.push(this)
 }

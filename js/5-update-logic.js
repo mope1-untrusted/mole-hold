@@ -108,6 +108,16 @@ function updateHouses(){
   }
 }
 
+function updateEvilSpawn(){
+  if (Math.random()<0.9) return
+  var evil=things.filter(function(thing){
+    return thing.id===3
+  })[0]
+  var monster=new Thing({id:1, x:evil.x, y:evil.y})
+  console.log(monster)
+  moveCommand(monster, { x: mapSize*0.5, y: mapSize*0.5 } )
+}
+
 function updateSlimes(){
   things.filter(function(thing){
     return thing.id===2
@@ -118,11 +128,13 @@ function updateSlimes(){
   })
 }
 
-function mineCommand(thing,evt){
+function mineCommand(thing,target){
 
 }
 
-function moveCommand(thing,evt){
+
+
+function moveCommand(thing,target){
 
   // lol exception for slimes during clone HACK
   if (thing.id==2 && thing.animation==15) return
@@ -131,9 +143,18 @@ function moveCommand(thing,evt){
     entities[thing.id].onMoveCommand.apply(thing)
   }
 
+  var targetWoldX
+  var targetWoldY
   thing.moveTargets=[]
-  var targetWoldX=(evt.clientX-origin.x)/tileSize
-  var targetWoldY=(evt.clientY-origin.y)/tileSize
+  if (target.clientX) {
+    // mouse event target
+    targetWoldX=(target.clientX-origin.x)/tileSize
+    targetWoldY=(target.clientY-origin.y)/tileSize
+  } else {
+    // world target
+    targetWoldX=target.x
+    targetWoldY=target.y
+  }
   var obstacleMap=map.mapTiles(function(x,y){
     var avoid=false
     entities[thing.id].tileAvoid.forEach(function(tile){
@@ -141,7 +162,7 @@ function moveCommand(thing,evt){
         avoid=true
       }
     })
-    return avoid?'u':'_' //unpassable=u in this astar library
+    return avoid?'u':'_'  //unpassable=u in this astar library
   });
   obstacleMap[Math.floor(thing.y)][Math.floor(thing.x)]='s'
   obstacleMap[Math.floor(targetWoldY)][Math.floor(targetWoldX)]='g'

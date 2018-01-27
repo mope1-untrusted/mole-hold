@@ -26,8 +26,8 @@ window.onload = function () {
     },
     onsuccess: function() {
     	var delay = 0; // play one note every quarter second
-    	var note = evt[1]; // the MIDI note
-    	var velocity = evt[2]; // how hard the note hits
+    	var note = 16; // the MIDI note
+    	var velocity = 128; // how hard the note hits
     	// play the note
     	MIDI.setVolume(0, 127);
     	MIDI.noteOn(0, note, velocity, delay);

@@ -38,7 +38,7 @@ window.onmouseup=function(evt){
 
     //box select
     things.filter(function(thing){
-      return true &&
+      return thing.selectAble && 
           ( ( LMBdragging.clientX-origin.x < thing.x*tileSize && evt.clientX-origin.x > thing.x*tileSize ) ||
           ( LMBdragging.clientX-origin.x > thing.x*tileSize && evt.clientX-origin.x < thing.x*tileSize ) ) &&
           ( ( LMBdragging.clientY-origin.y < thing.y*tileSize && evt.clientY-origin.y > thing.y*tileSize ) ||
