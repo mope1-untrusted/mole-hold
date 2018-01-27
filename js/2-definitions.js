@@ -18,13 +18,15 @@ var entities=indexArray([
     img:'slime.png',
     size: 64,
     speed: 0.01,
-    animations:[13,6,6,16],
+    animations:[13,6,6,16,16],
     tileAvoid: ['stone'],
     tileCollision: ['stone'],
-    selectAble: true
+    tileMine: ['stone'],
+    selectAble: true,
+    digSpeed: 0.05
   },
   {
-    img:'evil.png',
+    img:'EvilFishPerson.png',
     size: 256,
     customMovement: true,
     angle:20
@@ -51,7 +53,8 @@ var tiles=indexArray([
   { img:'hole.png'},
   { img:'stairs.png'},
   { img:'mountain.png'},
-  { img:'path.png'}
+  { img:'path.png'},
+  { img:'cracks.png'}
 ]);
 
 // clockwise edges of tile have this material? -> x,y on tilemap
@@ -91,6 +94,12 @@ var Thing=function(params){
   this.pathTrail=params.pathTrail||entities[this.id].pathTrail||false
   this.angle=params.angle||entities[this.id].angle||false
   this.selectAble=params.selectAble||entities[this.id].selectAble||false
+  this.tileCollision=params.tileCollision||entities[this.id].tileCollision||[]
+  this.tileAvoid=params.tileAvoid||entities[this.id].tileAvoid||[]
+  this.tileMine=params.tileMine||entities[this.id].tileMine||[]
+
+  this.digProcess=0
+
   console.log('new thing',this)
   things.push(this)
 }

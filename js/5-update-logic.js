@@ -23,28 +23,33 @@ function update(){
   })
 
   things.forEach(function(thing){
-    map.set(thing.x+0.5, thing.y+0.5, 'stone', false)
-    if (map.get(thing.x+0.5, thing.y+0.5, 'iron')) {
-      thing.animation=15
-      map.set(thing.x+0.5, thing.y+0.5, 'iron', false)
-    }
+
 
   })
 
   things.forEach(function(thing){
-    tiles.forEach(function(tile){
-      if (tile.collision && tile.collision.indexOf(thing.id)>-1 ) {
+
+    thing.tileCollision.forEach(function(tileName){
+      if (map.get(thing.x+0.5, thing.y+0.5, tileName)) {
         thing.vx*=0//thing.digProcess
         thing.vy*=0//thing.digProcess
-        //thing.digProcess+=entities[thing.id].digSpeed
-      }
-      if (thing.digProcess>1) {
-        //map.set(thing.x+0.5, thing.y+0.5, 'stone', false)
-        //map.set(thing.x+0.5, thing.y+0.5, 'stone_floor', true)
-        thing.digProcess=0
+        if ( thing.tileMine.indexOf(tileName)>-1 ) {
+          thing.digProcess+=entities[thing.id].digSpeed
+          map.set(thing.x+0.5, thing.y+0.5, 'cracks', true)
+          if (thing.digProcess>1) {
+            map.set(thing.x+0.5, thing.y+0.5, 'stone', false)
+            map.set(thing.x+0.5, thing.y+0.5, 'cracks', false)
+            //map.set(thing.x+0.5, thing.y+0.5, 'stone', false)
+            //map.set(thing.x+0.5, thing.y+0.5, 'stone_floor', true)
+            thing.digProcess=0
+
+          }
+
+        }
       }
 
     })
+
 
   })
 
