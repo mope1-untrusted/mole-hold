@@ -91,11 +91,20 @@ function drawThings(){
         entities[thing.id].size
       )
     } else {
+      ctx.imageSmoothingEnabled = false;
+      if (thing.angle) {
+        //ctx.rotate(thing.angle)
+      }
       ctx.drawImage(
         entities[thing.id].imageObj,
         x-0.5*entities[thing.id].size,
-        y-0.5*entities[thing.id].size
+        y-0.5*entities[thing.id].size,
+        entities[thing.id].size,
+        entities[thing.id].size
       )
+      if (thing.angle) {
+        ctx.restore()
+      }
     }
 
 

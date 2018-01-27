@@ -11,8 +11,8 @@ setInterval(function(){
 
 setInterval(function(){
   update()
-}, 1000.0/50)
+}, 1000.0/30)
 
 setInterval(function(){
   draw()
-}, 1000.0/50)
+}, 1000.0/30)

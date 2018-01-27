@@ -85,6 +85,8 @@ function updateEvil(){
     thing.x=x
     thing.y=y
 
+    thing.angle=evilAngle
+
   })
 }
 
@@ -150,6 +152,9 @@ function moveCommand(thing,evt){
     path.pop()
     path.forEach(function(step){
       thing.moveTargets.push({x: step.col, y: step.row});
+      if (thing.pathTrail) {
+        map.set(step.col, step.row, 'path')
+      }
     })
   } else {
     console.log('no path, going yolo mode')

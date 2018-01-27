@@ -1,5 +1,5 @@
 
-var evilSpeed=0
+var evilSpeed=1000
 var evilAngle=0
 function handleMidi(evt){
   var note=evt[1]-36

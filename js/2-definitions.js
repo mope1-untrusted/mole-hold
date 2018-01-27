@@ -7,14 +7,11 @@ var entities=indexArray([
   { img:'house.png', size: 128, builds:0 },
   {
     img:'mole.png',
-    size: 32,
+    size: 64,
     speed: 0.01,
-    canBurrow: true,
     digSpeed: 0.1,
-    animations:[1,5,5,5],
-    tileAvoid: ['stone'],
     tileCollision: ['stone'],
-
+    pathTrail: true
   },
   {
     img:'slime.png',
@@ -26,9 +23,10 @@ var entities=indexArray([
   },
   {
     img:'evil.png',
-    size: 64,
+    size: 256,
     customMovement: true,
-  },
+    angle:20
+  }
 ])
 entities.forEach(function(entity){
   if (!entity.onAnimationEnd) entity.onAnimationEnd=[]
@@ -50,7 +48,8 @@ var tiles=indexArray([
   { img:'river.png'},
   { img:'hole.png'},
   { img:'stairs.png'},
-  { img:'mountain.png'}
+  { img:'mountain.png'},
+  { img:'path.png'}
 ]);
 
 // clockwise edges of tile have this material? -> x,y on tilemap
@@ -71,7 +70,7 @@ var tileMappings = {
   '1,0,1,0':[[5,5]],  //diagonal
   '0,1,0,1':[[6,5]],
 }
-
+https://github.com/mudcube/MIDI.js.git
 var things=[]
 
 var Thing=function(params){
@@ -87,6 +86,8 @@ var Thing=function(params){
   this.animation=params.animation||0
   this.frame=0
   this.customMovement=params.customMovement||entities[this.id].customMovement||false
+  this.pathTrail=params.pathTrail||entities[this.id].pathTrail||false
+  this.angle=params.angle||entities[this.id].angle||false
   console.log('new thing',this)
   things.push(this)
 }
